@@ -24,9 +24,15 @@ jobs:
   int-tests:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        neo4j-version:
+          - 4.2
+          - 4.3
+
     services:
       neo4j:
-        image: neo4j:4.3
+        image: neo4j:${{ matrix.neo4j-version }}
         env:
           NEO4J_AUTH: neo4j/password
         ports:
