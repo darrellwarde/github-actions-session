@@ -20,3 +20,25 @@ jobs:
         run: yarn --immutable
       - name: Run unit tests
         run: yarn test:unit
+
+  int-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      neo4j:
+        image: neo4j:4.3
+        env:
+          NEO4J_AUTH: neo4j/password
+        ports:
+          - 7687:7687
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: yarn
+      - name: Install deps
+        run: yarn --immutable
+      - name: Run int tests
+        run: yarn test:int
