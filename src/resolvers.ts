@@ -2,7 +2,7 @@ import { reverseString } from "./utils";
 
 const resolvers = {
   Thing: {
-    reverseName: (object: any) => reverseString(object.name),
+    reverseName: (obj: any) => reverseString(obj.name),
   },
 };
 
